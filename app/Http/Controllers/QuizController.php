@@ -29,15 +29,22 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        quiz::create([
+            'name' => $request->name,
+
+        ]);
+        sleep(1);
+
+        return redirect()->back();    }
 
     /**
      * Display the specified resource.
      */
     public function show(quiz $quiz)
     {
-        //
     }
 
     /**
@@ -45,7 +52,8 @@ class QuizController extends Controller
      */
     public function edit(quiz $quiz)
     {
-        //
+        $quiz2 = $quiz;
+        return inertia('Quiz/Main',compact('quiz2'));
     }
 
     /**
@@ -53,7 +61,16 @@ class QuizController extends Controller
      */
     public function update(Request $request, quiz $quiz)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $quiz->update([
+            'name' => $request->name,
+
+        ]);
+        sleep(1);
+
+        return redirect()->back();
     }
 
     /**

@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\QuizController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +36,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('quiz',[\App\Http\Controllers\QuizController::class,'index']);
+// Route::inertia('/quiz', 'Quiz/Main')->name('quiz');
+Route::resource('quiz',QuizController::class);
