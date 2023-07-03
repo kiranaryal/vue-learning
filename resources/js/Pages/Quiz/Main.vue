@@ -16,7 +16,7 @@ const props = defineProps({
     },
 });
 const form = useForm({
-    name: ' ',
+    name: '',
 
 });
 const form2 = useForm({

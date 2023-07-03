@@ -4,18 +4,14 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\InstructorController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,7 +30,15 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::resource('quiz',QuizController::class);
+
+    Route::resource('vehicle',VehicleController::class);
+    Route::resource('courses',CoursesController::class);
+    Route::resource('instructor',InstructorController::class);
+    Route::get('/find',[InstructorController::class,'find'])->name('instructor.find');
+    Route::post('/instructor/get',[InstructorController::class,'getInstructors'])->name('instructor.get');
+
+
 });
 
-// Route::inertia('/quiz', 'Quiz/Main')->name('quiz');
-Route::resource('quiz',QuizController::class);
+
